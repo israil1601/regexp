@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>reveal.js</title>
+	<title>Regular Expressions</title>
 
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/reveal.css">
@@ -65,7 +65,7 @@
 					characters called metacharacters
 				</section>
 				<section>
-					<table border="1">
+					<table>
 						<tr>
 							<th>Metacharacter</th>
 							<th>Mathes</th>
@@ -95,17 +95,21 @@
 				<section>
 					<table>
 						<tr>
+							<th>Metacharacter</th>
+							<th>Matches</th>
+						</tr>
+						<tr>
 							<td>|</td>
-							<td>The choice operator matches either the expression before or the expression after the
+							<td>Either the expression before or the expression after the
 								operator.</td>
 						</tr>
 						<tr>
 							<td>^</td>
-							<td>beginning of line </td>
+							<td>Beginning of line </td>
 						</tr>
 						<tr>
 							<td>$</td>
-							<td>end of line</td>
+							<td>End of line</td>
 						</tr>
 						<tr>
 							<td>\<em>char</em></td>
@@ -117,11 +121,7 @@
 						</tr>
 						<tr>
 							<td>{m,n}</td>
-							<td>Matches the preceding element at least m and not more than n times.</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
+							<td>Preceding element at least m and not more than n times.</td>
 						</tr>
 					</table>
 				</section>
@@ -136,19 +136,19 @@
 						</tr>
 						<tr>
 							<td>\d</td>
-							<td>digits</td>
+							<td>Digits</td>
 						</tr>
 						<tr>
 							<td>\D</td>
-							<td>non-digits</td>
+							<td>Non-digits</td>
 						</tr>
 						<tr>
 							<td>\s</td>
-							<td>space symbols, tabs, newlines</td>
+							<td>Space symbols, tabs, newlines</td>
 						</tr>
 						<tr>
 							<td>\S</td>
-							<td>all but \s</td>
+							<td>All but \s</td>
 						</tr>
 						<tr>
 							<td>\w</td>
@@ -156,7 +156,7 @@
 						</tr>
 						<tr>
 							<td>\W</td>
-							<td>all but \w</td>
+							<td>All but \w</td>
 						</tr>
 					</table>
 				</section>
