@@ -1,49 +1,184 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+	<title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Regular Expressions</h1>
+				<h3>Isroilkhon Salikhodjaev</h3>
+			</section>
+			<section>
+				<p>Plan:</p>
+				<ul>
+					<li>What are regular expressions?</li>
+					<li>Basic concepts and syntax</li>
+					<li>Methods of RegExp and string</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h4>What are regular expressions?</h4>
+				</section>
+				<section>
+					<p></p>A regular expression, regex or regexp is a sequence of
+					characters that define a search pattern. Usually such patterns are used by string searching
+					algorithms
+					for "find" or "find and replace" operations on strings.</p>
+				</section>
+				<section>
+					<p>
+						Many programming languages provide regex capabilities either built-in or via libraries.
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<p>Basic concepts and syntax</p>
+				</section>
+				<section>
+					RegExp is a pattern of special characters used to match strings in a search, typically made up from
+					special
+					characters called metacharacters
+				</section>
+				<section>
+					<table border="1">
+						<tr>
+							<th>Metacharacter</th>
+							<th>Mathes</th>
+						</tr>
+						<tr>
+							<td>.</td>
+							<td>Any one character, except new line</td>
+						</tr>
+						<tr>
+							<td>[]</td>
+							<td>Any one of the enclosed characters (e.g. a-z)</td>
+						</tr>
+						<tr>
+							<td>*</td>
+							<td>Zero or more of preceding character</td>
+						</tr>
+						<tr>
+							<td>? or \? </td>
+							<td>Zero or one of the preceding characters </td>
+						</tr>
+						<tr>
+							<td>+ or \+ </td>
+							<td>One or more of the preceding characters</td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<table>
+						<tr>
+							<td>|</td>
+							<td>The choice operator matches either the expression before or the expression after the
+								operator.</td>
+						</tr>
+						<tr>
+							<td>^</td>
+							<td>beginning of line </td>
+						</tr>
+						<tr>
+							<td>$</td>
+							<td>end of line</td>
+						</tr>
+						<tr>
+							<td>\<em>char</em></td>
+							<td>Escape the meaning of <em>char</em> following it </td>
+						</tr>
+						<tr>
+							<td>[^]</td>
+							<td>One character <em>not</em> in the set </td>
+						</tr>
+						<tr>
+							<td>{m,n}</td>
+							<td>Matches the preceding element at least m and not more than n times.</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h1>Character Classes</h1>
+				</section>
+				<section>
+					<table>
+						<tr>
+							<th>Character Class</th>
+							<th>Matches</th>
+						</tr>
+						<tr>
+							<td>\d</td>
+							<td>digits</td>
+						</tr>
+						<tr>
+							<td>\D</td>
+							<td>non-digits</td>
+						</tr>
+						<tr>
+							<td>\s</td>
+							<td>space symbols, tabs, newlines</td>
+						</tr>
+						<tr>
+							<td>\S</td>
+							<td>all but \s</td>
+						</tr>
+						<tr>
+							<td>\w</td>
+							<td>English letters, digits, underscore '_'</td>
+						</tr>
+						<tr>
+							<td>\W</td>
+							<td>all but \w</td>
+						</tr>
+					</table>
+				</section>
+			</section>
 		</div>
+	</div>
 
-		<script src="js/reveal.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true }
+			]
+		});
+	</script>
+</body>
+
 </html>
