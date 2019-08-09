@@ -54,7 +54,6 @@
 						Many programming languages provide regex capabilities either built-in or via libraries.
 					</p>
 				</section>
-			</section>
 			<section>
 				<section>
 					<p>Basic concepts and syntax</p>
@@ -169,31 +168,151 @@
 							<th>Flag</th>
 							<th>Matches</th>
 						</tr>
-					<tr>
-						<td>i</td>
-						<td>Case-insensitive</td>
-					</tr>
-					<tr>
-						<td>g</td>
-						<td>All matches</td>
-					</tr>
-					<tr>
-						<td>m</td>
-						<td>Multiline mode</td>
-					</tr>
-					<tr>
-						<td>s</td>
-						<td>Allows . to match newlines</td>
-					</tr>
-					<tr>
-						<td>u</td>
-						<td>Enables full unicode support</td>
-					</tr>
-					<tr>
-						<td>y</td>
-						<td>Sticky mode</td>
-					</tr>
-				</table>
+						<tr>
+							<td>i</td>
+							<td>Case-insensitive</td>
+						</tr>
+						<tr>
+							<td>g</td>
+							<td>All matches</td>
+						</tr>
+						<tr>
+							<td>m</td>
+							<td>Multiline mode</td>
+						</tr>
+						<tr>
+							<td>s</td>
+							<td>Allows . to match newlines</td>
+						</tr>
+						<tr>
+							<td>u</td>
+							<td>Enables full unicode support</td>
+						</tr>
+						<tr>
+							<td>y</td>
+							<td>Sticky mode</td>
+						</tr>
+					</table>
+				</section>
+			</section>
+			<section>
+				<section>
+					<p>Methods of RegExp and string</p>
+				</section>
+				<section>
+					<p>The global RegExp object has no methods of its own; however, it does inherit some methods through
+						the prototype chain. </p>
+				</section>
+				<section>
+					<h3>str.search(reg)</h3>
+					<p>Returns the position of the first match or -1 if none found:</p>
+					<pre><code>
+let str = "A drop of ink may make a million think";
+alert( str.search( /a/i ) ); // 0 (first match at zero position)
+					</code></pre>
+					<p><em>The important limitation: search only finds the first match. </em></p>
+				</section>
+				<section>
+					<h3>str.match(reg), no “g” flag</h3>
+					<p>Looks for the first match only. The result is an array with that match and additional properties:
+					</p>
+					<ul>
+						<li>index – the position of the match inside the string,</li>
+						<li>input – the subject string.</li>
+					</ul>
+					<pre><code>
+let str = "Fame is the thirst of youth";
+
+let result = str.match( /fame/i );
+
+alert( result[0] );    // Fame (the match)
+alert( result.index ); // 0 (at the zero position)
+alert( result.input ); // "Fame is the thirst of youth" (the string)
+					</code></pre>
+				</section>
+				<section>
+					<h3>str.match(reg) with “g” flag</h3>
+					<p>Returns an array of all matches</p>
+					<pre><code>
+let str = "HO-Ho-ho!";
+
+let result = str.match( /ho/ig );
+
+alert( result ); // HO, Ho, ho (array of 3 matches, case-insensitive)
+					</code></pre>
+					<p>If there are no matches, the result is not an empty array, but <strong><em>null</em></strong></p>
+				</section>
+				<section>
+					<h3>str.split(regexp|substr, <em><strong>limit</strong></em>)</h3>
+					<p>Splits the string using the regexp (or a substring) as a delimiter.</p>
+					<p><em><strong>limit</strong></em> - Integer specifying a limit on the number of splits to be
+						found. Optional.</p>
+					<pre><code>
+alert('12-34-56'.split(/-/)) // array of [12, 34, 56]
+					</code></pre>
+				</section>
+				<section>
+					<h3>str.replace(str|reg, str|func)</h3>
+					<p>When the first argument of replace is a string, it only looks for the first match, but a regexp
+						with an obligatory <code>g</code>flag looks for all matches
+					</p>
+					<pre><code>
+alert( '12-34-56'.replace( /-/g, ":" ) )  // 12:34:56
+					</code></pre>
+				</section>
+				<section>
+					<h3>regexp.exec(str)</h3>
+					<p>If there’s no g, then regexp.exec(str) returns the first match, exactly as str.match(reg). But if
+						there’s g, then:</p>
+					<ul>
+						<li>regexp.exec(str) returns the first match and remembers the position after it in
+							regexp.lastIndex property.</li>
+						<li>The next call starts to search from regexp.lastIndex and returns the next match. </li>
+						<li>If there are no more matches then regexp.exec returns null and regexp.lastIndex is set to 0.
+						</li>
+					</ul>
+				</section>
+				<section>
+					<p>MatchAll does the same, at least for modern browsers. But what matchAll can’t do – is to
+						search from a given position. Let’s search from position 13. What we need is to assign
+						regexp.lastIndex=13 and call regexp.exec: </p>
+					<pre><code>
+let str = "A lot about JavaScript at https://javascript.info";
+
+let regexp = /javascript/ig;
+regexp.lastIndex = 13;
+
+let result;
+
+while (result = regexp.exec(str)) {
+	alert( `Found ${result[0]} at ${result.index}` );
+	// shows: Found javascript at 34
+}
+					</code></pre>
+				</section>
+				<section>
+					<h3>regexp.test(str)</h3>
+					<p>The method regexp.test(str) looks for a match and returns true/false whether it finds it.
+					</p>
+					<pre><code>
+let str = "I love JavaScript";
+alert( /random/i.test(str) ); // false
+alert( /love/i.test(str) ); // true
+					</code></pre>
+				</section>
+				<section>
+					<p> If the
+						regexp has 'g' flag, then regexp.test advances regexp.lastIndex property, just like regexp.exec.
+					</p>
+					<pre><code>
+let regexp = /love/gi;
+
+let str = "I love JavaScript";
+
+// start the search from position 10:
+regexp.lastIndex = 10
+alert( regexp.test(str) ); // false (no match)
+					</code></pre>
 				</section>
 			</section>
 		</div>
